@@ -1,0 +1,6 @@
+# Package folders
+node_modules
+
+# Testing folders
+coverage
+
