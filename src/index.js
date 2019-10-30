@@ -44,9 +44,10 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      history: [{ squares: Array(9).fill(null), moveCoords: [0, 0] }],
+      history: [{ squares: Array(9).fill(null), lastMove: [0, 0] }],
       stepNumber: 0,
-      xIsNext: true
+      xIsNext: true,
+      ascending: true,
     };
   }
 
@@ -60,7 +61,7 @@ class Game extends React.Component {
 
     squares[i] = this.state.xIsNext ? "X" : "O";
     this.setState({
-      history: history.concat([{ squares: squares, moveCoords: coords }]),
+      history: history.concat([{ squares: squares, lastMove: coords }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext
     });
@@ -73,14 +74,21 @@ class Game extends React.Component {
     });
   }
 
+  sortMoveList() {
+    this.setState({
+      ascending: !this.state.ascending
+    });
+  }
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+    const ascending = this.state.ascending;
 
     const moves = history.map((step, move) => {
       const desc = move
-        ? `Go to move #${move} (${step.moveCoords})`
+        ? `Go to move #${move} (${step.lastMove})`
         : "Go to game start";
 
       return (
@@ -106,7 +114,10 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
-          <ol>{moves}</ol>
+          <ol>{ascending ? moves : moves.reverse()}</ol>
+          <ul>
+            <button onClick={() => this.sortMoveList()}>Sort Move List</button>
+          </ul>
         </div>
       </div>
     );
