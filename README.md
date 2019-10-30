@@ -3,7 +3,7 @@ A simple Tic Tac Toe game made up with ReactJS as part of [reactjs.org tutorial]
 
 # TODO
 
-Features to be added for completing the tutorial:
+Features to be added for completing the tutorial and some other extras added by me:
 
 1. ~~Display de location of each move in the format (col, row) in the move history list.~~
 2. ~~Bold the curent selected item in the move list.~~
