@@ -43,9 +43,11 @@ class Board extends React.Component {
 class Game extends React.Component {
   constructor(props) {
     super(props);
+    this.size = 9;
     this.state = {
-      history: [{ squares: Array(9).fill(null), lastMove: [0, 0] }],
+      history: [{ squares: Array(this.size).fill(null), lastMove: [0, 0] }],
       stepNumber: 0,
+      maxMoves: this.size,
       xIsNext: true,
       ascending: true
     };
@@ -103,6 +105,8 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = `Winner: ${winner.slice(0, 1)}`;
+    } else if (this.state.maxMoves === this.state.stepNumber) {
+      status = `Draw Game: Everybody Wins ;)`;
     } else {
       status = `Next Player: ${this.state.xIsNext ? "X" : "O"}`;
     }
