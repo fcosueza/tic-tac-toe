@@ -102,7 +102,7 @@ class Game extends React.Component {
 
     let status;
     if (winner) {
-      status = `Winner: ${winner}`;
+      status = `Winner: ${winner.slice(0, 1)}`;
     } else {
       status = `Next Player: ${this.state.xIsNext ? "X" : "O"}`;
     }
@@ -140,7 +140,7 @@ function calculateWinner(squares) {
     const [a, b, c] = lines[i];
 
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return [squares[a], lines[i]];
     }
   }
 
