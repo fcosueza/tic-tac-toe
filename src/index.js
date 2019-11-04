@@ -11,7 +11,7 @@ const Square = props => {
 };
 
 class Board extends React.Component {
-  renderSquare(i) {
+  renderSquare(i, isHighlight) {
     return (
       <Square
         value={this.props.squares[i]}
@@ -26,8 +26,10 @@ class Board extends React.Component {
     for (let i = 0; i < size; i++) {
       let innerContent = [];
 
-      for (let j = 0; j < size; j++)
-        innerContent.push(this.renderSquare(j + size * i));
+      for (let j = 0; j < size; j++) {
+        if (this.props.winnerLine && this)
+          innerContent.push(this.renderSquare(j + size * i));
+      }
 
       board.push(<div className="board-row">{innerContent}</div>);
     }
@@ -49,7 +51,8 @@ class Game extends React.Component {
       stepNumber: 0,
       maxMoves: this.size,
       xIsNext: true,
-      ascending: true
+      ascending: true,
+      winnerLine: []
     };
   }
 
@@ -105,6 +108,7 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = `Winner: ${winner.slice(0, 1)}`;
+      this.state.winnerLine.concat(winner.slice(1));
     } else if (this.state.maxMoves === this.state.stepNumber) {
       status = `Draw Game: Everybody Wins ;)`;
     } else {
@@ -114,7 +118,11 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <Board squares={current.squares} onClick={i => this.handleClick(i)} />
+          <Board
+            squares={current.squares}
+            onClick={i => this.handleClick(i)}
+            winnerLine={this.state.winnerLine}
+          />
         </div>
         <div className="game-info">
           <div>{status}</div>
