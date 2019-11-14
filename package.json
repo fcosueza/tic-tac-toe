@@ -20,7 +20,8 @@
   },
   "jest": {
     "setupFileAfterEnv": ["jest-enzyme"],
-    "testEnvironment": "enzyme"
+    "testEnvironment": "enzyme", 
+    "coverageDirectory": "coverage"
   },
   "browserslist": {
     "production": [
