@@ -19,7 +19,9 @@
     "extends": "react-app"
   },
   "jest": {
-    "setupFilesAfterEnv": ["jest-enzyme"],
+    "setupFilesAfterEnv": [
+      "jest-enzyme"
+    ],
     "testEnvironment": "enzyme",
     "coverageDirectory": "coverage"
   },
