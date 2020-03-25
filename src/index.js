@@ -4,7 +4,7 @@ import "./index.css";
 
 const Square = props => {
   return (
-    <button className={props.classes} onClick={props.onClick}>
+    <button className={props.classes} onClick={props.onClick} key={props.skey}>
       {props.value}
     </button>
   );
@@ -17,6 +17,7 @@ class Board extends React.Component {
         classes={this.props.winner.includes(i) ? "square highlight" : "square"}
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
+        key={i}
       />
     );
   }
