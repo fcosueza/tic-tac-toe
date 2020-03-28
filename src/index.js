@@ -28,8 +28,9 @@ class Board extends React.Component {
     for (let i = 0; i < size; i++) {
       let innerContent = [];
 
-      for (let j = 0; j < size; j++)
+      for (let j = 0; j < size; j++) {
         innerContent.push(this.renderSquare(j + size * i));
+      }
 
       board.push(
         <div key={i} className="board-row">
