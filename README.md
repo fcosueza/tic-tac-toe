@@ -10,4 +10,5 @@ Features to be added for completing the tutorial and some other extras added by 
 3. ~~Rewrite Board to use two loops to make the squares instead of hardcoding them.~~
 4. ~~Add a toggle button that lets you sort the moves in either ascending or descendig order.~~
 5. ~~when someone wins, highlight the tree squares that cause the win.~~
-6. ~~When no one wins, display a message about the result being draw.~~
+6. ~~When no one wins, display a message about the result being draw.~
+7. Refactor and split in components.
