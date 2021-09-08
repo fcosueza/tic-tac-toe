@@ -1,14 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Square from "./Square";
 import "./index.css";
-
-const Square = props => {
-  return (
-    <button className={props.classes} onClick={props.onClick} key={props.key}>
-      {props.value}
-    </button>
-  );
-};
 
 class Board extends React.Component {
   renderSquare(i) {
