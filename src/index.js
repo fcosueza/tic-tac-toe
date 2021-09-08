@@ -87,7 +87,7 @@ class Game extends React.Component {
           />
         </div>
         <div className="game-info">
-          <div>{status}</div>
+          <div className="status">{status}</div>
           <ol>{ascending ? moves : moves.reverse()}</ol>
           <ul>
             <button onClick={() => this.sortMoveList()}>Sort Move List</button>
