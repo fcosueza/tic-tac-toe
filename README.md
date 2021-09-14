@@ -18,4 +18,4 @@ me:
 5. ~~when someone wins, highlight the tree squares that cause the win.~~
 6. ~~When no one wins, display a message about the result being draw.~~
 7. ~~Split code in components~~.
-8. Refactor code to use pure functions instead classes
+8. Refactor code to use functional components instead classes
