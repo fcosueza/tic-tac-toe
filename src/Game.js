@@ -52,9 +52,7 @@ class Game extends React.Component {
     const ascending = this.state.ascending;
 
     const moves = history.map((step, move) => {
-      const desc = move
-        ? `Go to move #${move} (${step.lastMove})`
-        : "Go to game start";
+      const desc = move ? `Go to move #${move} (${step.lastMove})` : "Go to game start";
 
       return (
         <li key={move}>
@@ -79,11 +77,7 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <Board
-            squares={current.squares}
-            onClick={i => this.handleClick(i)}
-            winner={winnerLine}
-          />
+          <Board squares={current.squares} onClick={i => this.handleClick(i)} winner={winnerLine} />
         </div>
         <div className="game-info">
           <div className="status">{status}</div>
