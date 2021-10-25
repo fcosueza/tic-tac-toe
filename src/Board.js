@@ -17,7 +17,7 @@ const Board = props => {
             classes={props.winner.includes(squareIndex) ? "square highlight" : "square"}
             value={props.squares[squareIndex]}
             onClick={() => props.onClick(squareIndex)}
-            id={i}
+            itemKey={squareIndex}
           />
         );
       }
