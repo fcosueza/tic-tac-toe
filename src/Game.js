@@ -76,15 +76,14 @@ class Game extends React.Component {
 
     return (
       <div className="game">
-        <div className="game-board">
-          <Board squares={current.squares} onClick={i => this.handleClick(i)} winner={winnerLine} />
-        </div>
+        <Board squares={current.squares} onClick={i => this.handleClick(i)} winner={winnerLine} />
         <div className="game-info">
           <div className="status">{status}</div>
           <ol>{ascending ? moves : moves.reverse()}</ol>
-          <ul>
-            <button onClick={() => this.sortMoveList()}>Sort Move List</button>
-          </ul>
+
+          <button className="button" onClick={() => this.sortMoveList()}>
+            Sort Move List
+          </button>
         </div>
       </div>
     );
