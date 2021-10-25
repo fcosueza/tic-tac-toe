@@ -3,14 +3,14 @@ import Square from "./Square";
 import "./Board.css";
 
 const Board = props => {
-  let size = 3;
+  let rowSize = 3;
   let board = [];
 
-  for (let i = 0; i < size; i++) {
+  for (let i = 0; i < rowSize; i++) {
     let squareRow = [];
 
-    for (let j = 0; j < size; j++) {
-      let squareIndex = j + size * i;
+    for (let j = 0; j < rowSize; j++) {
+      let squareIndex = j + rowSize * i;
 
       squareRow.push(
         <Square
