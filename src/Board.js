@@ -3,17 +3,6 @@ import Square from "./Square";
 import "./Board.css";
 
 const Board = props => {
-  function renderSquare(i) {
-    return (
-      <Square
-        classes={props.winner.includes(i) ? "square highlight" : "square"}
-        value={props.squares[i]}
-        onClick={() => props.onClick(i)}
-        key={i}
-      />
-    );
-  }
-
   function renderBoard(size = 3) {
     let board = [];
 
@@ -21,7 +10,16 @@ const Board = props => {
       let innerContent = [];
 
       for (let j = 0; j < size; j++) {
-        innerContent.push(renderSquare(j + size * i));
+        let squareIndex = j + size * i;
+
+        innerContent.push(
+          <Square
+            classes={props.winner.includes(squareIndex) ? "square highlight" : "square"}
+            value={props.squares[squareIndex]}
+            onClick={() => props.onClick(squareIndex)}
+            id={i}
+          />
+        );
       }
 
       board.push(
