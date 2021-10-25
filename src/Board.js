@@ -7,24 +7,24 @@ const Board = props => {
     let board = [];
 
     for (let i = 0; i < size; i++) {
-      let innerContent = [];
+      let squareRow = [];
 
       for (let j = 0; j < size; j++) {
         let squareIndex = j + size * i;
 
-        innerContent.push(
+        squareRow.push(
           <Square
             classes={props.winner.includes(squareIndex) ? "square highlight" : "square"}
             value={props.squares[squareIndex]}
             onClick={() => props.onClick(squareIndex)}
-            itemKey={squareIndex}
+            key={squareIndex}
           />
         );
       }
 
       board.push(
         <div key={i} className="board-row">
-          {innerContent}
+          {squareRow}
         </div>
       );
     }
