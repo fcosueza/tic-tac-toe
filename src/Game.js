@@ -52,12 +52,12 @@ class Game extends React.Component {
     const ascending = this.state.ascending;
 
     const moves = history.map((step, move) => {
-      const desc = move ? `Go to move #${move} (${step.lastMove})` : "Go to game start";
+      const moveDescription = move ? `Go to move #${move} (${step.lastMove})` : "Go to game start";
 
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>
-            {move === this.state.stepNumber ? <b>{desc}</b> : desc}
+            {move === this.state.stepNumber ? <b>{moveDescription}</b> : moveDescription}
           </button>
         </li>
       );
