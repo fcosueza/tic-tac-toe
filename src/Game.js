@@ -14,6 +14,9 @@ class Game extends React.Component {
       maxMoves: this.size,
       xIsNext: true
     };
+
+    this.handleClick = this.handleClick.bind(this);
+    this.jumpTo = this.jumpTo.bind(this);
   }
 
   handleClick(i) {
@@ -58,12 +61,12 @@ class Game extends React.Component {
 
     return (
       <div className="game">
-        <Board squares={current.squares} onClick={i => this.handleClick(i)} winner={winnerLine} />
+        <Board squares={current.squares} onClick={this.handleClick} winner={winnerLine} />
         <InfoPanel
           history={this.state.history}
           status={status}
           stepNumber={this.state.stepNumber}
-          jumpTo={() => this.jumpTo()}
+          jumpTo={this.jumpTo}
         />
       </div>
     );
