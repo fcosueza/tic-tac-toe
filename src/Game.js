@@ -1,6 +1,7 @@
 import React from "react";
 import calculateWinner from "./CalculateWinner";
 import Board from "./Board";
+import InfoPanel from "./InfoPanel";
 import "./Game.css";
 
 class Game extends React.Component {
@@ -11,8 +12,7 @@ class Game extends React.Component {
       history: [{ squares: Array(this.size).fill(null), lastMove: [0, 0] }],
       stepNumber: 0,
       maxMoves: this.size,
-      xIsNext: true,
-      ascending: true
+      xIsNext: true
     };
   }
 
@@ -39,32 +39,14 @@ class Game extends React.Component {
     });
   }
 
-  sortMoveList() {
-    this.setState({
-      ascending: !this.state.ascending
-    });
-  }
-
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-    const ascending = this.state.ascending;
-
-    const moves = history.map((step, move) => {
-      const moveDescription = move ? `Go to move #${move} (${step.lastMove})` : "Go to game start";
-
-      return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>
-            {move === this.state.stepNumber ? <b>{moveDescription}</b> : moveDescription}
-          </button>
-        </li>
-      );
-    });
 
     let status;
     let winnerLine = [];
+
     if (winner) {
       status = `Winner: ${winner.winner}`;
       winnerLine = winner.lines.slice();
@@ -77,15 +59,12 @@ class Game extends React.Component {
     return (
       <div className="game">
         <Board squares={current.squares} onClick={i => this.handleClick(i)} winner={winnerLine} />
-        <div className="game-info">
-          <div className="status">{status}</div>
-          <ol>{ascending ? moves : moves.reverse()}</ol>
-          <ul>
-            <button className="button" onClick={() => this.sortMoveList()}>
-              Sort Move List
-            </button>
-          </ul>
-        </div>
+        <InfoPanel
+          history={this.state.history}
+          status={status}
+          stepNumber={this.state.stepNumber}
+          jumpTo={() => this.jumpTo()}
+        />
       </div>
     );
   }
