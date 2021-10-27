@@ -7,12 +7,10 @@ import "./Game.css";
 
 const Game = props => {
   const [size, setSize] = useState(9);
-  const [history, setHistory] = useState([
-    { squares: Array(this.size).fill(null), lastMove: [0, 0] }
-  ]);
   const [stepNumber, setStepNumber] = useState(0);
   const [maxMoves, setMaxMoves] = useState(size);
   const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([{ squares: Array(this.size).fill(null), lastMove: [0, 0] }]);
 
   function handleClick(i) {
     const historySlice = history.slice(0, stepNumber + 1);

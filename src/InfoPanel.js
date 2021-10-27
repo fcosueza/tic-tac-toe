@@ -9,9 +9,7 @@ const InfoPanel = props => {
   const stepNumber = props.stepNumber;
 
   const moves = history.map((step, moveIndex) => {
-    const moveDescription = moveIndex
-      ? `Go to move #${moveIndex} (${step.lastMove})`
-      : "Go to game start";
+    const moveDescription = moveIndex ? `Go to move #${moveIndex} (${step.lastMove})` : "Go to game start";
 
     return (
       <li key={moveIndex}>
