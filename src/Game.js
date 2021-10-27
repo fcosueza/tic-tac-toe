@@ -6,11 +6,26 @@ import InfoPanel from "./InfoPanel";
 import "./Game.css";
 
 const Game = props => {
-  const [size, setSize] = useState(9);
   const [stepNumber, setStepNumber] = useState(0);
-  const [maxMoves, setMaxMoves] = useState(size);
   const [xIsNext, setXIsNext] = useState(true);
-  const [history, setHistory] = useState([{ squares: Array(this.size).fill(null), lastMove: [0, 0] }]);
+  const [history, setHistory] = useState([
+    { squares: Array(this.size).fill(null), lastMove: [0, 0] }
+  ]);
+
+  const SIZE = 9;
+  const current = history[stepNumber];
+  const winner = calculateWinner(current.squares);
+  const winnerLine = winner ? winner.lines.slice() : [];
+
+  let status;
+
+  if (winner) {
+    status = `Winner: ${winner.winner}`;
+  } else if (SIZE === stepNumber) {
+    status = `Draw Game: Everybody Wins ;)`;
+  } else {
+    status = `Next Player: ${xIsNext ? "X" : "O"}`;
+  }
 
   function handleClick(i) {
     const historySlice = history.slice(0, stepNumber + 1);
@@ -30,21 +45,6 @@ const Game = props => {
   function jumpTo(step) {
     setStepNumber(step);
     setXIsNext(step % 2 === 0);
-  }
-
-  const current = history[stepNumber];
-  const winner = calculateWinner(current.squares);
-
-  let status;
-  let winnerLine = [];
-
-  if (winner) {
-    status = `Winner: ${winner.winner}`;
-    winnerLine = winner.lines.slice();
-  } else if (maxMoves === stepNumber) {
-    status = `Draw Game: Everybody Wins ;)`;
-  } else {
-    status = `Next Player: ${xIsNext ? "X" : "O"}`;
   }
 
   return (
