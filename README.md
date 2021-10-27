@@ -14,5 +14,5 @@ Features to be added for completing the tutorial and some other extras added by 
 5. ~~when someone wins, highlight the tree squares that cause the win.~~
 6. ~~When no one wins, display a message about the result being draw.~~
 7. ~~Split code in components~~.
-8. Refactor code to use functional components instead classes
+8. ~~Refactor code to use functional components instead classes~~
 9. Add test
