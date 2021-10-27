@@ -13,8 +13,7 @@ const Game = props => {
   ]);
 
   const SIZE = 9;
-  const current = history[stepNumber];
-  const winner = calculateWinner(current.squares);
+  const winner = calculateWinner(history[stepNumber].squares);
   const winnerLine = winner ? winner.lines.slice() : [];
 
   let status;
@@ -49,7 +48,7 @@ const Game = props => {
 
   return (
     <div className="game">
-      <Board squares={current.squares} onClick={handleClick} winner={winnerLine} />
+      <Board squares={history[stepNumber].squares} onClick={handleClick} winner={winnerLine} />
       <InfoPanel history={history} status={status} stepNumber={stepNumber} jumpTo={jumpTo} />
     </div>
   );
