@@ -3,7 +3,7 @@ import Square from "./Square";
 import "./Board.css";
 
 const Board = props => {
-  let rowSize = 3;
+  let rowSize = props.size;
   let board = [];
 
   for (let i = 0; i < rowSize; i++) {

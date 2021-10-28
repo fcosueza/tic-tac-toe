@@ -6,20 +6,23 @@ import InfoPanel from "./InfoPanel";
 import "./Game.css";
 
 const Game = props => {
-  const SIZE = 9;
+  const ROW_SIZE = 3;
 
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
-  const [history, setHistory] = useState([{ squares: Array(SIZE).fill(null), lastMove: [0, 0] }]);
+  const [history, setHistory] = useState([
+    { squares: Array(ROW_SIZE * ROW_SIZE).fill(null), lastMove: [0, 0] }
+  ]);
 
   const winner = calculateWinner(history[stepNumber].squares);
   const winnerLine = winner ? winner.lines.slice() : [];
+  const maxMoves = ROW_SIZE * ROW_SIZE;
 
   let status;
 
   if (winner) {
     status = `Winner: ${winner.winner}`;
-  } else if (SIZE === stepNumber) {
+  } else if (maxMoves === stepNumber) {
     status = `Draw Game: Everybody Wins ;)`;
   } else {
     status = `Next Player: ${xIsNext ? "X" : "O"}`;
@@ -47,7 +50,12 @@ const Game = props => {
 
   return (
     <div className="game">
-      <Board squares={history[stepNumber].squares} onClick={handleClick} winner={winnerLine} />
+      <Board
+        squares={history[stepNumber].squares}
+        onClick={handleClick}
+        winner={winnerLine}
+        size={ROW_SIZE}
+      />
       <InfoPanel history={history} status={status} stepNumber={stepNumber} jumpTo={jumpTo} />
     </div>
   );
