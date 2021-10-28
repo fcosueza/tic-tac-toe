@@ -6,13 +6,12 @@ import InfoPanel from "./InfoPanel";
 import "./Game.css";
 
 const Game = props => {
+  const SIZE = 9;
+
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXIsNext] = useState(true);
-  const [history, setHistory] = useState([
-    { squares: Array(this.size).fill(null), lastMove: [0, 0] }
-  ]);
+  const [history, setHistory] = useState([{ squares: Array(SIZE).fill(null), lastMove: [0, 0] }]);
 
-  const SIZE = 9;
   const winner = calculateWinner(history[stepNumber].squares);
   const winnerLine = winner ? winner.lines.slice() : [];
 
