@@ -3,7 +3,10 @@ import Square from "./Square";
 import "./Board.css";
 
 const Board = props => {
-  let rowSize = props.size;
+  const rowSize = props.size;
+  const winner = props.winner;
+  const squares = props.squares;
+
   let board = [];
 
   for (let i = 0; i < rowSize; i++) {
@@ -14,8 +17,8 @@ const Board = props => {
 
       squareRow.push(
         <Square
-          classes={props.winner.includes(squareIndex) ? "square highlight" : "square"}
-          value={props.squares[squareIndex]}
+          classes={winner.includes(squareIndex) ? "square highlight" : "square"}
+          value={squares[squareIndex]}
           onClick={() => props.onClick(squareIndex)}
           key={squareIndex}
         />
