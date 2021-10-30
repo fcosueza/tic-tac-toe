@@ -2,24 +2,20 @@ import React from "react";
 import Square from "./Square";
 import "./Board.css";
 
-const Board = props => {
-  const rowSize = props.size;
-  const winner = props.winner;
-  const squares = props.squares;
-
+const Board = ({ size = 3, winner, squares, onClick }) => {
   let board = [];
 
-  for (let i = 0; i < rowSize; i++) {
+  for (let i = 0; i < size; i++) {
     let squareRow = [];
 
-    for (let j = 0; j < rowSize; j++) {
-      let squareIndex = j + rowSize * i;
+    for (let j = 0; j < size; j++) {
+      let squareIndex = j + size * i;
 
       squareRow.push(
         <Square
           classes={winner.includes(squareIndex) ? "square highlight" : "square"}
           value={squares[squareIndex]}
-          onClick={() => props.onClick(squareIndex)}
+          onClick={() => onClick(squareIndex)}
           key={squareIndex}
         />
       );
