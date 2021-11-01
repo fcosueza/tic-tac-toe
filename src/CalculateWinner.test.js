@@ -14,4 +14,18 @@ describe("CalculateWinner", () => {
 
     expect(calculateWinner(squares).winner).toBe(playerSymbol);
   });
+
+  it("Should return and array with the corresponding winningLines", () => {
+    const firstIndex = 0;
+    const secondIndex = 1;
+    const thirdIndex = 2;
+
+    squares[firstIndex] = squares[secondIndex] = squares[thirdIndex] = playerSymbol;
+
+    const winnerResult = calculateWinner(squares).lines;
+
+    expect(winnerResult[0]).toBe(firstIndex);
+    expect(winnerResult[1]).toBe(secondIndex);
+    expect(winnerResult[2]).toBe(thirdIndex);
+  });
 });
