@@ -14,5 +14,13 @@ describe("Board", () => {
     expect(screen.getAllByRole("button").length).toEqual(size * size);
   });
 
-  it("Should call fn when an element is clicked", async () => {});
+  it("Should call fn when an element is clicked", async () => {
+    const handleMock = jest.fn();
+
+    render(<Board size={size} winner={winner} squares={squares} onClick={handleMock} />);
+
+    userEvent.click(screen.getAllByRole("button")[1]);
+
+    await waitFor(() => expect(handleMock).toBeCalledTimes(1));
+  });
 });
