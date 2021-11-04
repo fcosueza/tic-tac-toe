@@ -4,7 +4,8 @@ import Game from "./Game";
 
 describe("Game", () => {
   it("Should render properly all components", () => {
-    const rowSize = 3;
+    const boardSize = 9;
+    const infoListSize = 2;
     const nextPlayer = "Next Player: X";
     const moveListText = "Go to game start";
     const sortButtonText = "Sort Move List";
@@ -12,8 +13,11 @@ describe("Game", () => {
     render(<Game />);
 
     const board = screen.getByRole("grid");
+    const info = screen.getByRole("status");
 
-    expect(within(board).getAllByRole("button").length).toBe(rowSize * rowSize);
+    expect(within(board).getAllByRole("button").length).toBe(boardSize);
+    expect(within(info).getAllByRole("button").length).toBe(infoListSize);
+
     expect(screen.queryByText(nextPlayer)).toBeInTheDocument();
     expect(screen.queryByText(moveListText)).toBeInTheDocument();
     expect(screen.queryByText(sortButtonText)).toBeInTheDocument();
