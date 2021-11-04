@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import InfoPanel from "./InfoPanel";
 
@@ -18,5 +18,19 @@ describe("InfoPanel", () => {
     expect(screen.getByText(status)).toBeInTheDocument();
     expect(screen.getByText(buttonText)).toBeInTheDocument();
     expect(screen.getByText(sortText)).toBeInTheDocument();
+  });
+
+  it("Should add a new button for every new move in history", () => {
+    const nextMove = [{ squares: board[3], lastMove: [2, 1] }];
+    const updatedHistory = history.concat(nextMove);
+    const newMoveText = "Go to move #1 (2,1)";
+    const stepNumber = 1;
+
+    render(<InfoPanel history={updatedHistory} status={status} stepNumber={stepNumber} />);
+
+    const moveList = screen.getAllByRole("list")[0];
+
+    expect(within(moveList).getAllByRole("button").length).toBe(2);
+    expect(within(moveList).queryByText(newMoveText)).toBeInTheDocument();
   });
 });
