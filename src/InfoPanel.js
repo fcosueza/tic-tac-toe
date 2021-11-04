@@ -24,7 +24,7 @@ const InfoPanel = props => {
   });
 
   return (
-    <div className="game-info">
+    <div className="game-info" role="status">
       <div className="status">{status}</div>
       <ol>{ascendingOrder ? moves : moves.reverse()}</ol>
       <ul>

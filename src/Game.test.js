@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import Game from "./Game";
 
 describe("Game", () => {
@@ -11,7 +11,9 @@ describe("Game", () => {
 
     render(<Game />);
 
-    expect(screen.getAllByRole("button").length).toBe(rowSize * rowSize + 2);
+    const board = screen.getByRole("grid");
+
+    expect(within(board).getAllByRole("button").length).toBe(rowSize * rowSize);
     expect(screen.queryByText(nextPlayer)).toBeInTheDocument();
     expect(screen.queryByText(moveListText)).toBeInTheDocument();
     expect(screen.queryByText(sortButtonText)).toBeInTheDocument();
