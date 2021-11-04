@@ -28,7 +28,7 @@ const Board = ({ size = 3, winner, squares, onClick }) => {
     );
   }
 
-  return <div>{board}</div>;
+  return <div role="grid">{board}</div>;
 };
 
 export default Board;
