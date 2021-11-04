@@ -48,4 +48,17 @@ describe("InfoPanel", () => {
       expect(within(moveList).queryAllByRole("button")[0].innerHTML).toBe(newMoveHTML)
     );
   });
+
+  it("Should call fn when a button in the move list is clicked", async () => {
+    const jumpToMock = jest.fn();
+    const buttonText = "Go to game start";
+
+    render(
+      <InfoPanel history={history} status={status} stepNumber={stepNumber} jumpTo={jumpToMock} />
+    );
+
+    userEvent.click(screen.getByText(buttonText));
+
+    await (await waitFor(() => expect(jumpToMock))).toBeCalledTimes(1);
+  });
 });
