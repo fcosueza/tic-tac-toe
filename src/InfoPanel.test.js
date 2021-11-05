@@ -59,6 +59,6 @@ describe("InfoPanel", () => {
 
     userEvent.click(screen.getByText(buttonText));
 
-    await (await waitFor(() => expect(jumpToMock))).toBeCalledTimes(1);
+    await waitFor(() => expect(jumpToMock).toBeCalledTimes(1));
   });
 });
