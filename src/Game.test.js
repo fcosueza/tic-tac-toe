@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { wait } from "@testing-library/user-event/dist/utils";
 import Game from "./Game";
 
 describe("Game", () => {
@@ -26,7 +25,7 @@ describe("Game", () => {
   });
 
   it("Should update info panel state after clicking on a square", async () => {
-    const nextPlayerMsg = "Next Player: O";
+    const nextPlayerMsg = "Next Player: O`";
 
     render(<Game />);
 
