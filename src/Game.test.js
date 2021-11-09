@@ -60,4 +60,21 @@ describe("Game", () => {
 
     await waitFor(() => expect(within(board).queryAllByText(playerText).length).toBe(1));
   });
+
+  it("Should end the game and stablish a winner if the conditions meets", async () => {
+    const winnerText = "Winner: X";
+
+    render(<Game />);
+
+    const board = screen.getByRole("grid");
+    const info = screen.getByRole("status");
+
+    userEvent.click(within(board).getAllByRole("button")[0]);
+    userEvent.click(within(board).getAllByRole("button")[1]);
+    userEvent.click(within(board).getAllByRole("button")[4]);
+    userEvent.click(within(board).getAllByRole("button")[2]);
+    userEvent.click(within(board).getAllByRole("button")[8]);
+
+    await waitFor(() => expect(within(info).queryByText(winnerText)).toBeInTheDocument());
+  });
 });
