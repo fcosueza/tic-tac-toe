@@ -41,7 +41,7 @@ describe("Game", () => {
     });
   });
 
-  it("Should return to the specific board state if any of the move history button is clicked", async () => {
+  it("Should return to the specific board state if any move history button is clicked", async () => {
     const historyButtonText = "Go to move #1 (1,1)";
     const playerText = "X";
 
