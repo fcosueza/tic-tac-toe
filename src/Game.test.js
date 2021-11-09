@@ -77,4 +77,25 @@ describe("Game", () => {
 
     await waitFor(() => expect(within(info).queryByText(winnerText)).toBeInTheDocument());
   });
+
+  it("Should end the game a show a draw msg if every square is clicked and there is no winner", async () => {
+    const drawText = "Draw Game: Everybody Wins ;)";
+
+    render(<Game />);
+
+    const board = screen.getByRole("grid");
+    const info = screen.getByRole("status");
+
+    userEvent.click(within(board).getAllByRole("button")[0]);
+    userEvent.click(within(board).getAllByRole("button")[1]);
+    userEvent.click(within(board).getAllByRole("button")[2]);
+    userEvent.click(within(board).getAllByRole("button")[4]);
+    userEvent.click(within(board).getAllByRole("button")[3]);
+    userEvent.click(within(board).getAllByRole("button")[5]);
+    userEvent.click(within(board).getAllByRole("button")[7]);
+    userEvent.click(within(board).getAllByRole("button")[6]);
+    userEvent.click(within(board).getAllByRole("button")[8]);
+
+    await waitFor(() => expect(within(info).queryByText(drawText)).toBeInTheDocument());
+  });
 });
