@@ -25,7 +25,7 @@ describe("Game", () => {
   });
 
   it("Should update info panel state after clicking on a square", async () => {
-    const nextPlayerMsg = "Next Player: O`";
+    const nextPlayerMsg = "Next Player: O";
 
     render(<Game />);
 
@@ -39,5 +39,25 @@ describe("Game", () => {
       expect(within(info).queryByText(nextPlayerMsg)).toBeInTheDocument();
       expect(within(moveList).getAllByRole("button").length).toBe(2);
     });
+  });
+
+  it("Should return to the specific board state if the move history button is clicked", async () => {
+    const historyButtonText = "Go to move #1 (1,1)";
+    const playerText = "X";
+
+    render(<Game />);
+
+    const board = screen.getByRole("grid");
+    const info = screen.getByRole("status");
+
+    userEvent.click(within(board).getAllByRole("button")[0]);
+    userEvent.click(within(board).getAllByRole("button")[1]);
+    userEvent.click(within(board).getAllByRole("button")[2]);
+
+    await waitFor(() => expect(within(board).queryAllByText(playerText).length).toBe(2));
+
+    userEvent.click(within(info).getByText(historyButtonText));
+
+    await waitFor(() => expect(within(board).queryAllByText(playerText).length).toBe(1));
   });
 });
