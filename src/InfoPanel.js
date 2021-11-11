@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "./InfoPanel.css";
+import styles from "./InfoPanel.module.css";
 
 const InfoPanel = props => {
   const [ascendingOrder, setAscendingOrder] = useState(true);
@@ -28,7 +28,7 @@ const InfoPanel = props => {
       <div className="status">{status}</div>
       <ol>{ascendingOrder ? moves : moves.reverse()}</ol>
       <ul>
-        <button className="button" onClick={() => setAscendingOrder(!ascendingOrder)}>
+        <button className={styles.gameInfo} onClick={() => setAscendingOrder(!ascendingOrder)}>
           Sort Move List
         </button>
       </ul>
