@@ -1,6 +1,6 @@
 import React from "react";
 import Square from "./Square";
-import "./Board.css";
+import styles from "./Board.module.css";
 
 const Board = ({ size = 3, winner, squares, onClick }) => {
   let board = [];
@@ -22,7 +22,7 @@ const Board = ({ size = 3, winner, squares, onClick }) => {
     }
 
     board.push(
-      <div key={i} className="board-row">
+      <div key={i} className={styles.boardRow}>
         {squareRow}
       </div>
     );
