@@ -3,7 +3,7 @@ import { useState } from "react";
 import calculateWinner from "./CalculateWinner";
 import Board from "./Board";
 import InfoPanel from "./InfoPanel";
-import "./Game.css";
+import styles from "./Game.module.css";
 
 const Game = props => {
   const ROW_SIZE = 3;
@@ -49,7 +49,7 @@ const Game = props => {
   }
 
   return (
-    <div className="game">
+    <div className={styles.game}>
       <Board
         squares={history[stepNumber].squares}
         onClick={handleClick}

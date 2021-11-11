@@ -24,11 +24,11 @@ const InfoPanel = props => {
   });
 
   return (
-    <div className="game-info" role="status">
-      <div className="status">{status}</div>
+    <div className={styles.gameInfo} role="status">
+      <div className={styles.status}>{status}</div>
       <ol>{ascendingOrder ? moves : moves.reverse()}</ol>
       <ul>
-        <button className={styles.gameInfo} onClick={() => setAscendingOrder(!ascendingOrder)}>
+        <button className={styles.button} onClick={() => setAscendingOrder(!ascendingOrder)}>
           Sort Move List
         </button>
       </ul>
