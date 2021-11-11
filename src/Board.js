@@ -13,7 +13,7 @@ const Board = ({ size = 3, winner, squares, onClick }) => {
 
       squareRow.push(
         <Square
-          classes={winner.includes(squareIndex) ? "square highlight" : "square"}
+          highlight={winner.includes(squareIndex)}
           value={squares[squareIndex]}
           onClick={() => onClick(squareIndex)}
           key={squareIndex}

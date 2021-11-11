@@ -20,7 +20,7 @@ describe("Square", () => {
   });
 
   it("Should render a square with the proper CSS classes", () => {
-    render(<Square classes="square highlight" />);
+    render(<Square highlight={true} />);
 
     expect(screen.getByRole("button")).toHaveClass("square highlight");
   });
