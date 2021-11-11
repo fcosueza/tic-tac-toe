@@ -1,9 +1,9 @@
 import React from "react";
-import "./Square.css";
+import style from "./Square.css";
 
 const Square = props => {
   return (
-    <button className={props.classes} onClick={props.onClick}>
+    <button className={props.highlight ? "square highlight" : "square"} onClick={props.onClick}>
       {props.value}
     </button>
   );
