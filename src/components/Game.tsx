@@ -6,59 +6,59 @@ import InfoPanel from "./InfoPanel";
 import styles from "./Game.module.css";
 
 const Game = props => {
-  const ROW_SIZE = 3;
+	const ROW_SIZE = 3;
 
-  const [stepNumber, setStepNumber] = useState(0);
-  const [xIsNext, setXIsNext] = useState(true);
-  const [history, setHistory] = useState([
-    { squares: Array(ROW_SIZE * ROW_SIZE).fill(null), lastMove: [0, 0] }
-  ]);
+	const [stepNumber, setStepNumber] = useState(0);
+	const [xIsNext, setXIsNext] = useState(true);
+	const [history, setHistory] = useState([
+		{ squares: Array(ROW_SIZE * ROW_SIZE).fill(null), lastMove: [0, 0] },
+	]);
 
-  const winner = calculateWinner(history[stepNumber].squares);
-  const winnerLine = winner ? winner.lines.slice() : [];
-  const maxMoves = ROW_SIZE * ROW_SIZE;
+	const winner = calculateWinner(history[stepNumber].squares);
+	const winnerLine = winner ? winner.lines.slice() : [];
+	const maxMoves = ROW_SIZE * ROW_SIZE;
 
-  let status;
+	let status;
 
-  if (winner) {
-    status = `Winner: ${winner.winner}`;
-  } else if (maxMoves === stepNumber) {
-    status = `Draw Game: Everybody Wins ;)`;
-  } else {
-    status = `Next Player: ${xIsNext ? "X" : "O"}`;
-  }
+	if (winner) {
+		status = `Winner: ${winner.winner}`;
+	} else if (maxMoves === stepNumber) {
+		status = `Draw Game: Everybody Wins ;)`;
+	} else {
+		status = `Next Player: ${xIsNext ? "X" : "O"}`;
+	}
 
-  function handleClick(i) {
-    const historySlice = history.slice(0, stepNumber + 1);
-    const current = historySlice[historySlice.length - 1];
-    const squares = current.squares.slice();
-    const coords = [Math.trunc(i / 3) + 1, (i % 3) + 1];
+	function handleClick(i) {
+		const historySlice = history.slice(0, stepNumber + 1);
+		const current = historySlice[historySlice.length - 1];
+		const squares = current.squares.slice();
+		const coords = [Math.trunc(i / 3) + 1, (i % 3) + 1];
 
-    if (calculateWinner(squares) || squares[i]) return;
+		if (calculateWinner(squares) || squares[i]) return;
 
-    squares[i] = xIsNext ? "X" : "O";
+		squares[i] = xIsNext ? "X" : "O";
 
-    setHistory(historySlice.concat([{ squares: squares, lastMove: coords }]));
-    setStepNumber(historySlice.length);
-    setXIsNext(!xIsNext);
-  }
+		setHistory(historySlice.concat([{ squares: squares, lastMove: coords }]));
+		setStepNumber(historySlice.length);
+		setXIsNext(!xIsNext);
+	}
 
-  function jumpTo(step) {
-    setStepNumber(step);
-    setXIsNext(step % 2 === 0);
-  }
+	function jumpTo(step) {
+		setStepNumber(step);
+		setXIsNext(step % 2 === 0);
+	}
 
-  return (
-    <div className={styles.game}>
-      <Board
-        squares={history[stepNumber].squares}
-        onClick={handleClick}
-        winner={winnerLine}
-        size={ROW_SIZE}
-      />
-      <InfoPanel history={history} status={status} stepNumber={stepNumber} jumpTo={jumpTo} />
-    </div>
-  );
+	return (
+		<div className={styles.game}>
+			<Board
+				squares={history[stepNumber].squares}
+				onClick={handleClick}
+				winner={winnerLine}
+				size={ROW_SIZE}
+			/>
+			<InfoPanel history={history} status={status} stepNumber={stepNumber} jumpTo={jumpTo} />
+		</div>
+	);
 };
 
 export default Game;
