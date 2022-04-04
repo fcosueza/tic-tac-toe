@@ -3,32 +3,32 @@ import Square from "./Square";
 import styles from "./Board.module.css";
 
 const Board = ({ size = 3, winner, squares, onClick }) => {
-  let board = [];
+	let board = [];
 
-  for (let i = 0; i < size; i++) {
-    let squareRow = [];
+	for (let i = 0; i < size; i++) {
+		let squareRow = [];
 
-    for (let j = 0; j < size; j++) {
-      let squareIndex = j + size * i;
+		for (let j = 0; j < size; j++) {
+			let squareIndex = j + size * i;
 
-      squareRow.push(
-        <Square
-          highlight={winner.includes(squareIndex)}
-          value={squares[squareIndex]}
-          onClick={() => onClick(squareIndex)}
-          key={squareIndex}
-        />
-      );
-    }
+			squareRow.push(
+				<Square
+					highlight={winner.includes(squareIndex)}
+					value={squares[squareIndex]}
+					onClick={() => onClick(squareIndex)}
+					key={squareIndex}
+				/>
+			);
+		}
 
-    board.push(
-      <div key={i} className={styles.boardRow}>
-        {squareRow}
-      </div>
-    );
-  }
+		board.push(
+			<div key={i} className={styles.boardRow}>
+				{squareRow}
+			</div>
+		);
+	}
 
-  return <div role="grid">{board}</div>;
+	return <div role="grid">{board}</div>;
 };
 
 export default Board;
