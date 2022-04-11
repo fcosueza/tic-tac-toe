@@ -2,7 +2,14 @@ import React from "react";
 import Square from "./Square";
 import styles from "./Board.module.css";
 
-const Board = ({ size = 3, winner, squares, onClick }) => {
+interface Props {
+	size: number;
+	winner: number[];
+	squares: string[];
+	onClick: (index: number) => void;
+}
+
+const Board = ({ size = 3, winner, squares, onClick }: Props) => {
 	let board = [];
 
 	for (let i = 0; i < size; i++) {
