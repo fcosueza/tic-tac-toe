@@ -2,21 +2,29 @@ import React from "react";
 import { useState } from "react";
 import styles from "./InfoPanel.module.css";
 
-const InfoPanel = props => {
+interface History {
+	squares: number[];
+	lastMove: number[];
+}
+
+interface Props {
+	history: History[];
+	status: string;
+	stepNumber: number;
+	jumpTo: (step: number) => void;
+}
+
+const InfoPanel = ({ history, status, stepNumber, jumpTo }: Props): JSX.Element => {
 	const [ascendingOrder, setAscendingOrder] = useState(true);
 
-	const history = props.history;
-	const status = props.status;
-	const stepNumber = props.stepNumber;
-
-	const moves = history.map((step, moveIndex) => {
+	const moves = history.map((step: History, moveIndex: number) => {
 		const moveDescription = moveIndex
 			? `Go to move #${moveIndex} (${step.lastMove})`
 			: "Go to game start";
 
 		return (
 			<li key={moveIndex}>
-				<button onClick={() => props.jumpTo(moveIndex)}>
+				<button onClick={() => jumpTo(moveIndex)}>
 					{moveIndex === stepNumber ? <b>{moveDescription}</b> : moveDescription}
 				</button>
 			</li>
