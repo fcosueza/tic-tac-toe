@@ -1,5 +1,10 @@
-const calculateWinner = squares => {
-	const winningLines = [
+interface Winner {
+	winner: number;
+	lines: number[];
+}
+
+const calculateWinner = (squares: number[]): Winner | null => {
+	const winningLines: number[][] = [
 		[0, 1, 2],
 		[3, 4, 5],
 		[6, 7, 8],
