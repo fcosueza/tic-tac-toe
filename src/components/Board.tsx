@@ -10,13 +10,13 @@ interface Props {
 }
 
 const Board = ({ size = 3, winner, squares, onClick }: Props) => {
-	let board = [];
+	let board: JSX.Element[] = [];
 
 	for (let i = 0; i < size; i++) {
-		let squareRow = [];
+		let squareRow: JSX.Element[] = [];
 
 		for (let j = 0; j < size; j++) {
-			let squareIndex = j + size * i;
+			let squareIndex: number = j + size * i;
 
 			squareRow.push(
 				<Square
