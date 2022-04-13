@@ -12,7 +12,7 @@ describe("CalculateWinner", () => {
 	it("Should return the proper winner player", () => {
 		squares[0] = squares[1] = squares[2] = playerSymbol;
 
-		expect(calculateWinner(squares)?.winner).toBe(playerSymbol);
+		expect(calculateWinner(squares)!.winner).toBe(playerSymbol);
 	});
 
 	it("Should return and array with the corresponding winningLines", () => {
