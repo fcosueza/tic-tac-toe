@@ -10,22 +10,22 @@ interface History {
 interface Props {
 	history: History[];
 	status: string;
-	stepNumber: number;
+	step: number;
 	jumpTo: (step: number) => void;
 }
 
-const InfoPanel = ({ history, status, stepNumber, jumpTo }: Props): JSX.Element => {
+const InfoPanel = ({ history, status, step, jumpTo }: Props): JSX.Element => {
 	const [ascendingOrder, setAscendingOrder] = useState(true);
 
-	const moves = history.map((step: History, moveIndex: number) => {
+	const moves = history.map((stepHistory: History, moveIndex: number) => {
 		const moveDescription = moveIndex
-			? `Go to move #${moveIndex} (${step.lastMove})`
+			? `Go to move #${moveIndex} (${stepHistory.lastMove})`
 			: "Go to game start";
 
 		return (
 			<li key={moveIndex}>
 				<button onClick={() => jumpTo(moveIndex)}>
-					{moveIndex === stepNumber ? <b>{moveDescription}</b> : moveDescription}
+					{moveIndex === step ? <b>{moveDescription}</b> : moveDescription}
 				</button>
 			</li>
 		);

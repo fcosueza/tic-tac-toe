@@ -8,11 +8,12 @@ describe("InfoPanel", () => {
 	const history = [{ squares: board, lastMove: [0, 0] }];
 	const sortText = "Sort Move List";
 	const stepNumber = 0;
+	const jumpToMock = jest.fn();
 
 	it("Should render properly the buttons and status", () => {
 		const buttonText = "Go to game start";
 
-		render(<InfoPanel history={history} status={status} stepNumber={stepNumber} />);
+		render(<InfoPanel history={history} status={status} step={stepNumber} jumpTo={jumpToMock} />);
 
 		expect(screen.getByText(status)).toBeInTheDocument();
 		expect(screen.getByText(buttonText)).toBeInTheDocument();
@@ -21,10 +22,12 @@ describe("InfoPanel", () => {
 
 	it("Should add a new button for every new move in history", () => {
 		const nextMove = [{ squares: board[3], lastMove: [2, 1] }];
-		const updatedHistory = history.concat(nextMove);
+		const newHistory = history.concat(nextMove);
 		const newMoveText = "Go to move #1 (2,1)";
 
-		render(<InfoPanel history={updatedHistory} status={status} stepNumber={stepNumber + 1} />);
+		render(
+			<InfoPanel history={newHistory} status={status} step={stepNumber + 1} jumpTo={jumpToMock} />
+		);
 
 		const moveList = screen.getAllByRole("list")[0];
 
@@ -34,14 +37,16 @@ describe("InfoPanel", () => {
 
 	it("Should sort move list when sort button is clicked", async () => {
 		const nextMove = [{ squares: board[3], lastMove: [2, 1] }];
-		const updatedHistory = history.concat(nextMove);
+		const newHistory = history.concat(nextMove);
 		const newMoveHTML = "<b>Go to move #1 (2,1)</b>";
 
-		render(<InfoPanel history={updatedHistory} status={status} stepNumber={stepNumber + 1} />);
+		render(
+			<InfoPanel history={newHistory} status={status} step={stepNumber + 1} jumpTo={jumpToMock} />
+		);
 
 		const moveList = screen.getAllByRole("list")[0];
 
-		userEvent.click(screen.queryByText(sortText));
+		userEvent.click(screen.queryByText(sortText) as HTMLElement);
 
 		await waitFor(() =>
 			expect(within(moveList).queryAllByRole("button")[0].innerHTML).toBe(newMoveHTML)
@@ -49,12 +54,10 @@ describe("InfoPanel", () => {
 	});
 
 	it("Should call fn when a button in the move list is clicked", async () => {
-		const jumpToMock = jest.fn();
 		const buttonText = "Go to game start";
+		const stepNumber = 0;
 
-		render(
-			<InfoPanel history={history} status={status} stepNumber={stepNumber} jumpTo={jumpToMock} />
-		);
+		render(<InfoPanel history={history} status={status} step={stepNumber} jumpTo={jumpToMock} />);
 
 		userEvent.click(screen.getByText(buttonText));
 
