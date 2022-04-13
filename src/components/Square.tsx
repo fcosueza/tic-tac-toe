@@ -7,7 +7,7 @@ interface Props {
 	onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Square = ({ highlight, onClick, value }: Props) => {
+const Square = ({ highlight, value, onClick }: Props) => {
 	return (
 		<button
 			className={highlight ? `${styles.square} ${styles.highlight}` : styles.square}
