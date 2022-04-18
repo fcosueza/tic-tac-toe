@@ -5,7 +5,7 @@ import Board from "./Board";
 import InfoPanel from "./InfoPanel";
 import styles from "./Game.module.css";
 
-const Game = props => {
+const Game = (props: any): JSX.Element => {
 	const ROW_SIZE = 3;
 
 	const [step, setStep] = useState(0);
@@ -43,7 +43,7 @@ const Game = props => {
 		setXIsNext(!xIsNext);
 	}
 
-	function jumpTo(step: numberAdd) {
+	function jumpTo(step: number) {
 		setStep(step);
 		setXIsNext(step % 2 === 0);
 	}
