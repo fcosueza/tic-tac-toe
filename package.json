@@ -45,5 +45,12 @@
     "@testing-library/dom": "^7.31.2",
     "@testing-library/user-event": "^13.3.0",
     "react-hook-form": "^7.17.1"
+  },
+
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.tsx",
+      "!src/index.tsx"
+    ]
   }
 }
