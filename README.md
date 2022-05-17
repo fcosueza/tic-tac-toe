@@ -16,3 +16,4 @@ Features to be added for completing the tutorial and some other extras added by 
 7. ~~Split code in components~~.
 8. ~~Refactor code to use functional components instead classes~~
 9. ~~Add test~~
+10. Refactor some test (they look a little bit ugly...)
