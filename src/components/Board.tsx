@@ -3,7 +3,7 @@ import Square from "./Square";
 import styles from "./Board.module.css";
 
 interface Props {
-  size: number;
+  size?: number;
   winner: number[];
   squares: string[];
   onClick: (index: number) => void;

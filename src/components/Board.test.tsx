@@ -3,7 +3,8 @@ import userEvent from "@testing-library/user-event";
 import Board from "./Board";
 
 describe("Board", () => {
-  const size = 3;
+  const size = 4;
+  const defaultSize = 3;
   const squares = Array(size * size).fill(null);
   const winner = [1, 2, 4];
   const handleMock = jest.fn();
@@ -12,6 +13,12 @@ describe("Board", () => {
     render(<Board size={size} winner={winner} squares={squares} onClick={handleMock} />);
 
     expect(screen.getAllByRole("button").length).toEqual(size * size);
+  });
+
+  it("Should render a board with default size if not specified", () => {
+    render(<Board winner={winner} squares={squares} onClick={handleMock} />);
+
+    expect(screen.getAllByRole("button").length).toEqual(defaultSize * defaultSize);
   });
 
   it("Should call fn when an element is clicked", async () => {
