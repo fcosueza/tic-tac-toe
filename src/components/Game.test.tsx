@@ -97,4 +97,19 @@ describe("Game", () => {
 
     await waitFor(() => expect(within(info).queryByText(drawText)).toBeInTheDocument());
   });
+
+  it("Should do nothing if you click in a previously clicked square", async () => {
+    const winnerText = "Winner: X";
+
+    render(<Game />);
+
+    const board = screen.getByRole("grid");
+    const info = screen.getByRole("status");
+
+    userEvent.click(within(board).getAllByRole("button")[0]);
+    userEvent.click(within(board).getAllByRole("button")[1]);
+    userEvent.click(within(board).getAllByRole("button")[1]);
+
+    await waitFor(() => expect(within(info).queryByText(winnerText)).not.toBeInTheDocument());
+  });
 });
