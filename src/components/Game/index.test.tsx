@@ -1,6 +1,6 @@
 import { render, screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Game from "./Game";
+import Game from ".";
 
 describe("Game", () => {
   it("Should render properly all components", () => {

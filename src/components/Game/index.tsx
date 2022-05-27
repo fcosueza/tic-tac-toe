@@ -1,8 +1,8 @@
 import { useState } from "react";
-import calculateWinner from "./CalculateWinner";
-import Board from "./Board";
-import InfoPanel from "./InfoPanel";
-import styles from "./Game.module.css";
+import calculateWinner from "../../utils/CalculateWinner";
+import Board from "../Board";
+import InfoPanel from "../InfoPanel";
+import styles from "./style.module.css";
 
 const Game = (props: any): JSX.Element => {
   const ROW_SIZE = 3;
