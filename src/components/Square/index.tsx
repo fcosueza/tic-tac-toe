@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Square.module.css";
+import styles from "./style.module.css";
 
 interface Props {
   highlight: boolean;

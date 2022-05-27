@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Board from "./Board";
+import Board from ".";
 
 describe("Board", () => {
   const size = 4;

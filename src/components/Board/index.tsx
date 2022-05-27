@@ -1,6 +1,6 @@
 import React from "react";
-import Square from "./Square";
-import styles from "./Board.module.css";
+import Square from "../Square";
+import styles from "./style.module.css";
 
 interface Props {
   size?: number;

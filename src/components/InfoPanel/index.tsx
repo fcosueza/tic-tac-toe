@@ -1,6 +1,5 @@
-import React from "react";
 import { useState } from "react";
-import styles from "./InfoPanel.module.css";
+import styles from "./style.module.css";
 
 interface History {
   squares: number[];

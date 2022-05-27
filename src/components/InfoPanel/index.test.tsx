@@ -1,6 +1,6 @@
 import { render, screen, within, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import InfoPanel from "./InfoPanel";
+import InfoPanel from ".";
 
 describe("InfoPanel", () => {
   const status = "Next Player: X";
