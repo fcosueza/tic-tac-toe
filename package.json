@@ -23,6 +23,7 @@
     "eject": "react-scripts eject"
   },
   "overrides": {
+    "postcss": "8.5.23",
     "webpack-dev-server": "5.2.6"
   },
   "eslintConfig": {
