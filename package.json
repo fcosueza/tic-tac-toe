@@ -25,7 +25,8 @@
   "overrides": {
     "postcss": "8.5.23",
     "svgo": "2.8.4",
-    "webpack-dev-server": "5.2.6"
+    "webpack-dev-server": "5.2.6",
+    "serialize-javascript": "7.0.5"
   },
   "eslintConfig": {
     "extends": [
